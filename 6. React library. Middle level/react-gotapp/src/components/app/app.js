@@ -8,8 +8,8 @@ import CharDetails from '../charDetails';
 
 const App = () => {
     return (
-        <> 
-            <Container>
+        <>
+            <Container >
                 <Header />
             </Container>
             <Container>
