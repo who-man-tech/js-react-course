@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, ListGroup, ListGroupItem} from "reactstrap";
+import {ListGroup, ListGroupItem, Spinner} from "react-bootstrap";
 import GotService from "../../services/gotService";
 
 
@@ -7,55 +7,63 @@ export default class RandomChar extends Component {
     constructor(props) {
         super(props);
 
+        this.gotService = new GotService();
         this.state = {
-            showRandomChar: false,
-            character: {}
+            character: {},
+            loading: true,
+            error: false,
         };
+
+        this.updateChar();
     }
 
-    handleRandomCharButton = (event) => {
-        const showRandomChar = !this.state.showRandomChar;
-        let character = {};
-        const service = new GotService()
+    onError = (err) => {
+        this.setState({error: true, loading: false});
+    }
 
-        const promise = !showRandomChar ?
-            Promise.resolve()
-            : service.getCharacter(Math.floor(Math.random() * 100)).then(data => {
-                character = data;
-                console.log(character);
+    updateChar = () => {
+        this.gotService.getCharacter(Math.floor(Math.random() * 100))
+            .then((data) => {
+                const {name, gender, born, died, culture} = data;
+                this.setState({
+                    character: {name, gender, born, died, culture},
+                    loading: false
+                });
             })
-        Promise.all([promise]).then(() => {
-            this.setState({showRandomChar: showRandomChar, character: character});
-        })
+            .catch(this.onError);
     }
 
     render() {
-        console.log(this.state.character)
-        const {character} = this.state;
-        return <>
-            {this.state.showRandomChar ?
-                <div className="rounded" style={{padding: "25px 25px 15px 25px", marginBottom: 10, backgroundColor: '#fff'}}>
-                    <h4 style={{marginBottom: 20, textAlign: "center"}}>Random Character: {character.name}</h4>
-                    <ListGroup>
-                        <ListGroupItem className="d-flex justify-content-between">
-                            <span className="term">Gender</span>
-                            <span>{character.gender}</span>
-                        </ListGroupItem>
-                        <ListGroupItem className="d-flex justify-content-between">
-                            <span className="term">Born</span>
-                            <span>{character.born}</span>
-                        </ListGroupItem>
-                        <ListGroupItem className="d-flex justify-content-between">
-                            <span className="term">Died</span>
-                            <span>{character.died}</span>
-                        </ListGroupItem>
-                        <ListGroupItem className="d-flex justify-content-between">
-                            <span className="term">Culture</span>
-                            <span>{character.cultur}</span>
-                        </ListGroupItem>
-                    </ListGroup>
-                </div> : null}
-            <Button color='primary' style={{width: 250, height: 40, marginBottom: 10}} onClick={this.handleRandomCharButton}>Show random character</Button>
-        </>;
+        const { character: {name, gender, born, died, culture}, loading, error } = this.state;
+
+        return <div className="rounded d-flex justify-content-center align-items-center" style={{width: 450, height: 280, marginBottom: 10, backgroundColor: '#fff'}}>
+            {error ? <div>
+                    <img src={process.env.PUBLIC_URL + 'img/error.png'} style={{width: '100%', borderRadius: 5}} alt="error"/>
+                </div>
+                : loading ?
+                    <Spinner animation="border" variant="primary" style={{width: 100, height: 100}} />
+                    : <div style={{margin: '25px 25px 15px 25px'}}>
+                        <h4 style={{marginBottom: 20, textAlign: 'center'}}>Random Character: {name || 'Unknown'}</h4>
+                        <ListGroup>
+                            <ListGroupItem className="d-flex justify-content-between">
+                                <span className="term">Gender</span>
+                                <span>{gender || 'Unknown'}</span>
+                            </ListGroupItem>
+                            <ListGroupItem className="d-flex justify-content-between">
+                                <span className="term">Born</span>
+                                <span>{born || 'Unknown'}</span>
+                            </ListGroupItem>
+                            <ListGroupItem className="d-flex justify-content-between">
+                                <span className="term">Died</span>
+                                <span>{died || 'Unknown'}</span>
+                            </ListGroupItem>
+                            <ListGroupItem className="d-flex justify-content-between">
+                                <span className="term">Culture</span>
+                                <span>{culture || 'Unknown'}</span>
+                            </ListGroupItem>
+                        </ListGroup>
+                    </div>
+            }
+        </div>
     }
 }

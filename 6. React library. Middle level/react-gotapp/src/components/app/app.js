@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Container} from 'reactstrap';
+import {Col, Row, Container, Button} from 'react-bootstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
@@ -7,6 +7,18 @@ import CharDetails from '../charDetails';
 
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showRandomChar: true
+        };
+    }
+
+    handleRandomCharButton = (event) => {
+        this.setState({showRandomChar: !this.state.showRandomChar}, () => console.log(this.state))
+    }
+
     render() {
         return (
             <>
@@ -16,7 +28,8 @@ class App extends React.Component {
             <Container>
                 <Row>
                     <Col lg={{size: 5, offset: 0}}>
-                        <RandomChar class="random-char"/>
+                        {this.state.showRandomChar ? <RandomChar showRandomChar={this.state.showRandomChar} /> : null}
+                        <Button color='primary' style={{width: 250, height: 40, marginBottom: 10}} onClick={this.handleRandomCharButton}>Show random character</Button>
                     </Col>
                 </Row>
                 <Row>

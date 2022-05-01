@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListGroup, ListGroupItem} from "reactstrap";
+import {ListGroup, ListGroupItem} from "react-bootstrap";
 
 
 export default class CharDetails extends Component {
