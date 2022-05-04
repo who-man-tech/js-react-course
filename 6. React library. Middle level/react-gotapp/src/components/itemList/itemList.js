@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
-import {ListGroup, ListGroupItem} from "react-bootstrap";
+import {ListGroup, Spinner} from "react-bootstrap";
+import GotService from "../../services/gotService";
 
 
 export default class ItemList extends Component {
+     gotService = new GotService()
+
+    state = {
+         charList: null,
+    }
+
+    componentDidMount() {
+         this.gotService.getAllCharacters().then(charList => {this.setState({charList})})
+    }
+
     render() {
+        const {charList} = this.state;
+
+        if (!charList) {
+            return <Spinner animation="border" variant="primary" style={{width: 100, height: 100}} />
+        }
+
         return (
-            <ListGroup className="item-list list-group">
-                <ListGroupItem className="list-group-item">
-                    John Snow
-                </ListGroupItem>
-                <ListGroupItem className="list-group-item">
-                    Brandon Stark
-                </ListGroupItem>
-                <ListGroupItem className="list-group-item">
-                    Geremy
-                </ListGroupItem>
+            <ListGroup>
+                {charList.map((item, i) => item.name ? <ListGroup.Item key={i} onClick={() => this.props.onCharSelected(i)}>{item.name}</ListGroup.Item> : null)}
             </ListGroup>
         );
     }
