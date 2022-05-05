@@ -29,7 +29,7 @@ export default class RandomChar extends Component {
     }
 
     updateChar = () => {
-        this.gotService.getCharacter(Math.floor(Math.random() * 100))
+        this.gotService.getCharacter(Math.floor(Math.random() * 100) + 1)
             .then((char) => {
                 const {name, gender, born, died, culture} = char;
                 this.setState({

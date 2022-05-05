@@ -9,17 +9,15 @@ import CharDetails from '../charDetails';
 class App extends React.Component {
     state = {
         showRandomChar: true,
-        selectedChar: null,
+        selectedCharName: null,
     };
 
-    handleRandomCharButton = (event) => {
-        this.setState({showRandomChar: !this.state.showRandomChar}, () => console.log(this.state))
+    handleRandomCharButton = () => {
+        this.setState({showRandomChar: !this.state.showRandomChar})
     }
 
-    onCharSelected = (key) => {
-        this.setState({
-            selectedChar: key
-        });
+    onCharSelected = (name) => {
+        this.setState({selectedCharName: name});
     }
 
     render() {
@@ -40,7 +38,7 @@ class App extends React.Component {
                         <ItemList onCharSelected={this.onCharSelected}/>
                     </Col>
                     <Col md='6'>
-                        <CharDetails charId={this.state.selectedChar} />
+                        <CharDetails charName={this.state.selectedCharName} />
                     </Col>
                 </Row>
             </Container>

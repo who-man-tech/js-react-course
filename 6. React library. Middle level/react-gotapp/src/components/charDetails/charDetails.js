@@ -15,19 +15,19 @@ export default class CharDetails extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-         if (this.props.charId !== prevProps.charId) {
+         if (this.props.charName !== prevProps.charName) {
              this.updateChar()
          }
     }
 
     updateChar = () => {
-         const {charId} = this.props;
-         if (!charId) {
+         const {charName} = this.props;
+         if (!charName) {
              return;
          }
-
-         this.gotService.getCharacter(charId).then(char => {
-             const {name, gender, born, died, culture} = char;
+         console.log(charName)
+         this.gotService.getAllCharacters(1, 1, charName).then(chars => {
+             const {name, gender, born, died, culture} = chars[0];
              this.setState({
                  char: {name, gender, born, died, culture}
              });

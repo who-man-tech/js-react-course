@@ -23,7 +23,7 @@ export default class ItemList extends Component {
 
         return (
             <ListGroup>
-                {charList.map((item, i) => item.name ? <ListGroup.Item key={i} onClick={() => this.props.onCharSelected(i)}>{item.name}</ListGroup.Item> : null)}
+                {charList.map((item, i) => item.name ? <ListGroup.Item key={i} onClick={() => this.props.onCharSelected(item.name)}>{item.name}</ListGroup.Item> : null)}
             </ListGroup>
         );
     }
