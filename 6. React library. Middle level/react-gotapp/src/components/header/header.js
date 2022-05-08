@@ -1,15 +1,16 @@
 import React from 'react';
 import {Nav, Navbar, Container} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 
 const Header = () => (
     <Navbar bg="light" variant="light" className="rounded mb-3">
         <Container>
-            <Navbar.Brand href="#">Game of Thrones DB</Navbar.Brand>
+            <Link to="/">Game of Thrones DB</Link>
             <Nav className="me-auto">
-                <Nav.Link href="#">Characters</Nav.Link>
-                <Nav.Link href="#">Houses</Nav.Link>
-                <Nav.Link href="#">Books</Nav.Link>
+                <Link to="/characters">Characters</Link>
+                <Link to="/houses">Houses</Link>
+                <Link to="/books">Books</Link>
             </Nav>
         </Container>
     </Navbar>
