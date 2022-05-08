@@ -18,4 +18,20 @@ export default class GotService {
     getCharacter = async (id) => {
         return await this.getResource(`/characters/${id}`);
     }
+
+    getAllBooks = async (page=1, pageSize=10, name='') => {
+        return await this.getResource(`/books?page=${page}&pageSize=${pageSize}${name ? `&name=${name}` : ''}`);
+    }
+
+    getBook= async (id) => {
+        return await this.getResource(`/books/${id}`);
+    }
+
+    getAllHouses = async (page=1, pageSize=10, name='') => {
+        return await this.getResource(`/houses?page=${page}&pageSize=${pageSize}${name ? `&name=${name}` : ''}`);
+    }
+
+    getHouse= async (id) => {
+        return await this.getResource(`/houses/${id}`);
+    }
 }

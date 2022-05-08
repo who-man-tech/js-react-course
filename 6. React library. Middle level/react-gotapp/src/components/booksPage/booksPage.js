@@ -5,41 +5,41 @@ import ItemDetails, {Field} from "../itemDetails";
 import RowBlock from "../rowBlock";
 
 
-export default class CharactersPage extends Component {
+export default class BooksPage extends Component {
     gotService = new GotService();
 
     state = {
-        charactersList: null,
-        character: null,
+        booksList: null,
+        book: null,
     }
 
     componentDidMount() {
-        this.gotService.getAllCharacters(Math.floor(Math.random() * 100) + 1)
-            .then(data => this.setState({charactersList: data}));
+        this.gotService.getAllBooks(Math.floor(Math.random() * 100) + 1)
+            .then(data => this.setState({booksList: data}));
     }
 
     onCharSelected = (item) => {
         const item_id = item.url.split('/').splice(-1).pop();
-        this.gotService.getCharacter(item_id).then(data => this.setState({character: data}));
+        this.gotService.getBook(item_id).then(data => this.setState({book: data}));
     }
 
     render() {
-        const charactersList = (
+        const booksList = (
             <ItemList
-                itemList={this.state.charactersList}
+                itemList={this.state.booksList}
                 onItemSelected={this.onCharSelected}
                 renderItem={(item) => item.name}
             />
         );
 
-        const charDetails = (
-            <ItemDetails item={this.state.character}>
+        const bookDetails = (
+            <ItemDetails item={this.state.book}>
                 <Field field='gender' label='Gender'/>
                 <Field field='born' label='Born'/>
                 <Field field='died' label='Died'/>
                 <Field field='culture' label='Culture'/>
             </ItemDetails>
         );
-        return <RowBlock left={charactersList} right={charDetails} />;
+        return <RowBlock left={booksList} right={bookDetails} />;
     }
 }
