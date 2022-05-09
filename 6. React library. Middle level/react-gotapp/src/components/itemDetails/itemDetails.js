@@ -27,7 +27,7 @@ export default class ItemDetails extends Component {
                     <ListGroup>
                         {React.Children.map(this.props.children, (child) => React.cloneElement(child, {item}))}
                     </ListGroup>
-                </> : <span>Please select a character</span>}
+                </> : <span>Please select an item</span>}
             </div>
         );
     }

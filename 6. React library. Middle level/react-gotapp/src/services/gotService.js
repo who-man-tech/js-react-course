@@ -11,24 +11,24 @@ export default class GotService {
         return await res.json();
     }
 
-    getAllCharacters = async (page=1, pageSize=10, name='') => {
-        return await this.getResource(`/characters?page=${page}&pageSize=${pageSize}${name ? `&name=${name}` : ''}`);
+    getAllCharacters = async (page=1, pageSize=10) => {
+        return await this.getResource(`/characters?page=${page}&pageSize=${pageSize}`);
     }
 
     getCharacter = async (id) => {
         return await this.getResource(`/characters/${id}`);
     }
 
-    getAllBooks = async (page=1, pageSize=10, name='') => {
-        return await this.getResource(`/books?page=${page}&pageSize=${pageSize}${name ? `&name=${name}` : ''}`);
+    getAllBooks = async () => {
+        return await this.getResource('/books');
     }
 
     getBook= async (id) => {
         return await this.getResource(`/books/${id}`);
     }
 
-    getAllHouses = async (page=1, pageSize=10, name='') => {
-        return await this.getResource(`/houses?page=${page}&pageSize=${pageSize}${name ? `&name=${name}` : ''}`);
+    getAllHouses = async (page=1, pageSize=10) => {
+        return await this.getResource(`/houses?page=${page}&pageSize=${pageSize}`);
     }
 
     getHouse= async (id) => {

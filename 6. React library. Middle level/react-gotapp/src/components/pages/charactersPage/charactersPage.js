@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import ItemList from "../itemList";
-import GotService from "../../services/gotService";
-import ItemDetails, {Field} from "../itemDetails";
-import RowBlock from "../rowBlock";
-
+import ItemList from "../../itemList";
+import GotService from "../../../services/gotService";
+import ItemDetails, {Field} from "../../itemDetails";
+import RowBlock from "../../rowBlock";
 
 export default class CharactersPage extends Component {
     gotService = new GotService();

@@ -2,10 +2,10 @@ import React from 'react';
 import {Col, Row, Container, Button} from 'react-bootstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharactersPage from "../charactersPage";
+import CharactersPage from "../pages/charactersPage";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import BooksPage from "../booksPage";
-import HousesPage from "../housesPage";
+import BooksPage from "../pages/booksPage";
+import HousesPage from "../pages/housesPage";
 
 
 class App extends React.Component {

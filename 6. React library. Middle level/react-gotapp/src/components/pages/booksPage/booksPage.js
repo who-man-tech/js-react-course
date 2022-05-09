@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import ItemList from "../itemList";
-import GotService from "../../services/gotService";
-import ItemDetails, {Field} from "../itemDetails";
-import RowBlock from "../rowBlock";
-
+import ItemList from "../../itemList";
+import GotService from "../../../services/gotService";
+import ItemDetails, {Field} from "../../itemDetails";
+import RowBlock from "../../rowBlock";
 
 export default class BooksPage extends Component {
     gotService = new GotService();
@@ -14,7 +13,7 @@ export default class BooksPage extends Component {
     }
 
     componentDidMount() {
-        this.gotService.getAllBooks(Math.floor(Math.random() * 100) + 1)
+        this.gotService.getAllBooks()
             .then(data => this.setState({booksList: data}));
     }
 
@@ -34,10 +33,10 @@ export default class BooksPage extends Component {
 
         const bookDetails = (
             <ItemDetails item={this.state.book}>
-                <Field field='gender' label='Gender'/>
-                <Field field='born' label='Born'/>
-                <Field field='died' label='Died'/>
-                <Field field='culture' label='Culture'/>
+                <Field field='released' label='Released'/>
+                <Field field='mediaType' label='Type'/>
+                <Field field='country' label='Country'/>
+                <Field field='publisher' label='Publisher'/>
             </ItemDetails>
         );
         return <RowBlock left={booksList} right={bookDetails} />;
