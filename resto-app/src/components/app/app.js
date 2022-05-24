@@ -3,15 +3,19 @@ import {MainPage, CartPage} from '../pages';
 import AppHeader from '../app-header';
 
 import Background from './food-bg.jpg';
+import WithRestoService from "../hoc";
+import {Route, Routes} from "react-router-dom";
 
-const App = () => {
+const App = ({restoService}) => {
     return (
         <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
             <AppHeader total={50}/>
-            <MainPage/>
-            <CartPage/>
+            <Routes>
+                <Route path="/menu" element={<MainPage/>}/>
+                <Route path="/cart" element={<CartPage/>}/>
+            </Routes>
         </div>
     )
 }
 
-export default App;
+export default WithRestoService()(App);
