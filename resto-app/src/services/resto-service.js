@@ -1,5 +1,5 @@
 export default class RestoService {
-    apiUrl = 'http://localhost:4000';
+    apiUrl = 'http://0.0.0.0:3001';
 
     getResource = async (url) => {
         const res = await fetch(`${this.apiUrl}${url}`);
