@@ -4,7 +4,7 @@
 			"title": "Cesar salad",
 			"price": 12,
 			"url": "https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg",
-			"category": "salads",
+			"category": "salad",
 			"id": 1
 		},
 		{
@@ -25,7 +25,7 @@
 			"title": "Greece salad",
 			"price": 8,
 			"url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg",
-			"category": "salads",
+			"category": "salad",
 			"id": 4
 		},
 		{

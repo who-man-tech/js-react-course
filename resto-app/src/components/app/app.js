@@ -1,18 +1,28 @@
 import React from 'react';
-import {MainPage, CartPage} from '../pages';
+import {MainPage, CartPage, MenuItemPage} from '../pages';
 import AppHeader from '../app-header';
 
 import Background from './food-bg.jpg';
-import {Route, Routes} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 
 const App = () => {
     return (
         <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
             <AppHeader total={50}/>
-            <Routes>
-                <Route path="/menu" element={<MainPage/>}/>
-                <Route path="/cart" element={<CartPage/>}/>
-            </Routes>
+            <Switch>
+                <Route path="/menu">
+                    <MainPage/>
+                </Route>
+                <Route path="/:itemId">
+                    <MenuItemPage/>
+                </Route>
+                <Route path="/cart">
+                    <CartPage/>
+                </Route>
+                <Route path="*">
+                    <Redirect to="/menu"/>
+                </Route>
+            </Switch>
         </div>
     )
 }

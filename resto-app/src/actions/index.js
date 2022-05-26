@@ -12,4 +12,8 @@ const menuRequested = () => {
     return {type: 'MENU_REQUESTED'};
 };
 
-export {menuLoaded, menuRequested};
+const menuFailed = () => {
+    return {type: 'MENU_FAILED'};
+};
+
+export {menuLoaded, menuRequested, menuFailed};
