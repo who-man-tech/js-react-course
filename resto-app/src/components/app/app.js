@@ -13,7 +13,7 @@ const App = () => {
                 <Route path="/menu">
                     <MainPage/>
                 </Route>
-                <Route path="/:itemId">
+                <Route path="/menu/:itemId">
                     <MenuItemPage/>
                 </Route>
                 <Route path="/cart">

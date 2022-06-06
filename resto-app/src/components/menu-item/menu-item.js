@@ -3,7 +3,6 @@ import Spinner from "../spinner";
 import Error from "../error";
 import WithRestoService from "../hoc";
 import './menu-item.scss';
-import {Link} from "react-router-dom";
 
 class MenuItem extends Component {
     state = {
