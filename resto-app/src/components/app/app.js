@@ -8,19 +8,19 @@ import {Redirect, Route, Switch} from "react-router-dom";
 const App = () => {
     return (
         <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
-            <AppHeader total={50}/>
+            <AppHeader />
             <Switch>
                 <Route path="/menu">
-                    <MainPage/>
+                    <MainPage />
                 </Route>
                 <Route path="/menu/:itemId">
-                    <MenuItemPage/>
+                    <MenuItemPage />
                 </Route>
                 <Route path="/cart">
-                    <CartPage/>
+                    <CartPage />
                 </Route>
                 <Route path="*">
-                    <Redirect to="/menu"/>
+                    <Redirect to="/menu" />
                 </Route>
             </Switch>
         </div>
